@@ -85,6 +85,10 @@ public class CsrCreator {
             return "EC";
         }
 
+        if (signingAlgorithm.startsWith("RSA")) {
+            return "RSA";
+        }
+
         String errMsg = "Signing Algorithm " + signingAlgorithm + " is not supported. " +
                 "Pls. see README for supported signing algorithms";
         throw new IllegalArgumentException(errMsg);
@@ -201,6 +205,9 @@ public class CsrCreator {
         // https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html
         if (awsKeySpec.equals("ECC_NIST_P256")) {
             return "ECDSA_SHA_256";
+        }
+        if (awsKeySpec.equals("RSA_4096")) {
+            return "RSASSA_PSS_SHA_256";
         }
         throw new IllegalArgumentException("AWS Key Spec " + awsKeySpec + " is not supported");
     }
