@@ -39,7 +39,7 @@ public class AwsKmsContentSigner implements ContentSigner {
                 return algorithmIdentifier.find("SHA256WITHECDSA");
 
             case "RSASSA_PSS_SHA_256":
-                return algorithmIdentifier.find("SHA256withRSA/PSS");
+                return algorithmIdentifier.find("SHA256withRSAandMGF1");
 
             default:
                 System.out.println("Signing Algorithm " + signingAlgorithm + " is not supported. Exiting ...");
